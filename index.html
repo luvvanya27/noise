@@ -1,397 +1,280 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <title>Noise & Form Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#000000;
-      --graphite:#0d0d0f;
-      --accent-teal:#00e5d4;
-      --accent-violet:#9b4dff;
-      --text:#ffffff;
-      --muted:#b8b8b8;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noise & Form</title>
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      background:var(--bg);
-      color:var(--text);
-      font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-      -webkit-font-smoothing:antialiased;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+  }
 
-    /* ===== HEADER ===== */
-    .nf-header{
-      width:100%;
-      padding:30px 0;
-      background:#000;
-      position:fixed;
-      top:0;left:0;
-      z-index:1000;
-    }
-    .nf-header-inner{
-      width:85%;
-      margin:0 auto;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .nf-logo{
-      font-size:22px;
-      font-weight:700;
-      color:var(--accent-teal);
-      letter-spacing:2px;
-    }
-    .nf-nav a{
-      margin-left:30px;
-      color:var(--muted);
-      text-decoration:none;
-      font-size:16px;
-      transition:color .3s ease,transform .3s ease;
-    }
-    .nf-nav a:hover{
-      color:var(--accent-violet);
-      transform:translateY(-3px);
-    }
-    .nf-nav-cta{
-      padding:8px 16px;
-      border:1px solid var(--accent-violet);
-      border-radius:6px;
-      transition:transform .3s ease,background .3s ease;
-    }
-    .nf-nav-cta:hover{
-      background:var(--accent-violet);
-      color:#fff;
-      transform:translateY(-3px);
-    }
+  /* HEADER */
+  header {
+    width: 100%;
+    padding: 20px 0;
+    background: #000;
+    border-bottom: 1px solid #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
-    /* ===== HERO ===== */
-    .nf-hero2{
-      width:100%;
-      height:100vh;
-      background:#000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      padding-top:120px;
-    }
-    .nf-hero2-inner{
-      text-align:center;
-      z-index:2;
-      animation:fade-in-up 1s ease forwards;
-      opacity:0;
-    }
-    .nf-hero2-title{
-      font-size:90px;
-      line-height:1.1;
-      color:#fff;
-      margin-bottom:20px;
-    }
-    .nf-hero2-sub{
-      font-size:22px;
-      color:var(--muted);
-      margin-bottom:40px;
-    }
-    .nf-hero-btn{
-      padding:16px 36px;
-      background:var(--accent-violet);
-      border:none;
-      border-radius:8px;
-      color:#fff;
-      font-size:20px;
-      cursor:pointer;
-      transition:transform .3s ease,background .3s ease;
-    }
-    .nf-hero-btn:hover{
-      transform:translateY(-6px) scale(1.05);
-      background:var(--accent-teal);
-    }
-    .nf-hero2-bg{
-      position:absolute;
-      width:100%;
-      height:100%;
-      background:
-        radial-gradient(circle at center, rgba(155,77,255,0.15), transparent 60%),
-        radial-gradient(circle at 30% 70%, rgba(0,229,212,0.12), transparent 70%);
-      filter:blur(40px);
-      z-index:1;
-    }
+  .header-inner {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    /* ===== PRODUCTS ===== */
-    .nf-products{
-      padding:140px 0;
-      background:#000;
-      color:#fff;
-    }
-    .nf-products-title{
-      text-align:center;
-      font-size:46px;
-      margin-bottom:10px;
-      letter-spacing:4px;
-    }
-    .nf-products-sub{
-      text-align:center;
-      font-size:20px;
-      color:var(--muted);
-      margin-bottom:80px;
-    }
-    .nf-products-grid{
-      width:80%;
-      margin:0 auto;
-      display:grid;
-      gap:60px;
-    }
-    .nf-product-card{
-      display:flex;
-      gap:40px;
-      background:var(--graphite);
-      padding:40px;
-      border-radius:14px;
-      border:1px solid #1a1a1a;
-      transition:transform .3s ease;
-    }
-    .nf-product-card:hover{
-      transform:scale(1.02);
-    }
-    .nf-product-img{
-      width:40%;
-      height:260px;
-      border-radius:12px;
-      background-size:cover;
-      background-position:center;
-      filter:grayscale(100%) contrast(120%) brightness(85%);
-    }
-    .img1{background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36');}
-    .img2{background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657');}
-    .img3{background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');}
-    .nf-product-info{width:60%;}
-    .nf-product-name{
-      font-size:30px;
-      margin-bottom:10px;
-      color:var(--accent-teal);
-    }
-    .nf-product-desc{
-      font-size:18px;
-      color:var(--muted);
-      margin-bottom:20px;
-    }
-    .nf-btn{
-      padding:14px 26px;
-      background:var(--accent-violet);
-      border:none;
-      border-radius:8px;
-      color:#fff;
-      font-size:18px;
-      cursor:pointer;
-      transition:transform .3s ease,background .3s ease;
-    }
-    .nf-btn:hover{
-      transform:translateY(-4px) scale(1.05);
-      background:var(--accent-teal);
-    }
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00e5d4;
+  }
 
-    /* ===== FOOTER ===== */
-    .nf-footer2{
-      background:#000;
-      padding:120px 0 60px;
-      color:#fff;
-    }
-    .nf-footer2-grid{
-      width:85%;
-      margin:0 auto 60px;
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:40px;
-    }
-    .nf-footer2-logo{
-      font-size:28px;
-      color:var(--accent-teal);
-      margin-bottom:10px;
-    }
-    .nf-footer2-title{
-      font-size:20px;
-      color:var(--accent-violet);
-      margin-bottom:10px;
-    }
-    .nf-footer2-text{
-      font-size:16px;
-      color:var(--muted);
-      margin-bottom:6px;
-    }
-    .nf-footer2-bottom{
-      text-align:center;
-      font-size:14px;
-      color:var(--muted);
-      opacity:.5;
-    }
+  nav a {
+    margin-left: 20px;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 15px;
+  }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes fade-in-up{
-      0%{opacity:0;transform:translateY(40px);}
-      100%{opacity:1;transform:translateY(0);}
+  nav a:hover {
+    color: #9b4dff;
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 120px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: #bbb;
+    margin-bottom: 30px;
+  }
+
+  .hero button {
+    padding: 12px 24px;
+    background: #9b4dff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+
+  .hero button:hover {
+    transform: translateY(-3px);
+  }
+
+  /* PRODUCTS */
+  .products {
+    width: 90%;
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+
+  .products h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  .products p.sub {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 50px;
+  }
+
+  .product-card {
+    display: flex;
+    gap: 20px;
+    background: #0d0d0f;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #1a1a1a;
+    margin-bottom: 30px;
+  }
+
+  .product-img {
+    width: 40%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+  }
+
+  .product-info {
+    width: 60%;
+  }
+
+  .product-info h3 {
+    margin: 0 0 10px;
+    color: #00e5d4;
+  }
+
+  .product-info p {
+    margin: 0 0 15px;
+    color: #bbb;
+  }
+
+  .product-info button {
+    padding: 10px 20px;
+    background: #9b4dff;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+
+  .product-info button:hover {
+    transform: translateY(-3px);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #000;
+    border-top: 1px solid #222;
+    padding: 40px 0;
+    margin-top: 40px;
+  }
+
+  .footer-inner {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 10px;
+    color: #00e5d4;
+  }
+
+  .footer-col p {
+    margin: 4px 0;
+    color: #aaa;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  /* ADAPTIVE */
+  @media (max-width: 900px) {
+    .product-card {
+      flex-direction: column;
     }
-
-    /* ===== TABLET ===== */
-    @media (max-width:992px){
-      .nf-header-inner{width:90%;}
-      .nf-nav a{margin-left:20px;font-size:15px;}
-      .nf-hero2-title{font-size:64px;}
-      .nf-hero2-sub{font-size:20px;}
-      .nf-hero-btn{font-size:18px;padding:14px 30px;}
-      .nf-footer2-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:40px;
-      }
-      .nf-products-grid{width:90%;}
-      .nf-product-card{
-        flex-direction:column;
-        text-align:center;
-        gap:20px;
-      }
-      .nf-product-img{
-        width:100%;
-        height:240px;
-      }
-      .nf-product-info{width:100%;}
-      .nf-product-name{font-size:26px;}
+    .product-img, .product-info {
+      width: 100%;
     }
+  }
 
-    /* ===== PHONE ===== */
-    @media (max-width:600px){
-      .nf-header{padding:20px 0;}
-      .nf-header-inner{width:92%;}
-      .nf-logo{font-size:18px;}
-      .nf-nav{display:none;}
-
-      .nf-hero2{padding-top:100px;}
-      .nf-hero2-title{font-size:42px;line-height:1.2;}
-      .nf-hero2-sub{font-size:18px;margin-bottom:30px;}
-      .nf-hero-btn{font-size:16px;padding:12px 26px;}
-
-      .nf-products{padding:100px 0;}
-      .nf-products-title{font-size:34px;}
-      .nf-products-sub{font-size:16px;margin-bottom:50px;}
-      .nf-product-card{padding:26px;}
-      .nf-product-img{height:200px;}
-      .nf-product-name{font-size:22px;}
-      .nf-product-desc{font-size:16px;}
-      .nf-btn{font-size:16px;padding:12px 22px;}
-
-      .nf-footer2-grid{
-        grid-template-columns:1fr;
-        gap:30px;
-        text-align:center;
-      }
-      .nf-footer2-logo{font-size:24px;}
-      .nf-footer2-title{font-size:18px;}
-      .nf-footer2-text{font-size:15px;}
-    }
-  </style>
+  @media (max-width: 600px) {
+    nav { display: none; }
+    .hero h1 { font-size: 32px; }
+    .hero p { font-size: 16px; }
+    .product-img { height: 160px; }
+  }
+</style>
 </head>
+
 <body>
 
-  <header class="nf-header">
-    <div class="nf-header-inner">
-      <div class="nf-logo">NOISE & FORM</div>
-      <nav class="nf-nav">
-        <a href="#works">Works</a>
-        <a href="#products">Objects</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="nf-nav-cta">Contact</a>
-      </nav>
+<header>
+  <div class="header-inner">
+    <div class="logo">NOISE & FORM</div>
+    <nav>
+      <a href="#products">Товары</a>
+      <a href="#about">О нас</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Где шум становится формой</h1>
+  <p>Минималистичные дизайнерские объекты, вдохновлённые текстурой и тишиной.</p>
+  <button>Смотреть коллекцию</button>
+</section>
+
+<section class="products" id="products">
+  <h2>Товары</h2>
+  <p class="sub">Экспериментальная коллекция предметов</p>
+
+  <div class="product-card">
+    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1524758631624-e2822e304c36');"></div>
+    <div class="product-info">
+      <h3>NOISE Lamp</h3>
+      <p>Матовая лампа с мягким светом. Вдохновлена аналоговым зерном.</p>
+      <button>Купить</button>
     </div>
-  </header>
+  </div>
 
-  <section class="nf-hero2">
-    <div class="nf-hero2-inner">
-      <h1 class="nf-hero2-title">Where Noise<br>Becomes Form</h1>
-      <p class="nf-hero2-sub">
-        Experimental design studio exploring texture,<br>
-        emotion and visual resonance.
-      </p>
-      <button class="nf-hero-btn">Explore Collection</button>
+  <div class="product-card">
+    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1503602642458-232111445657');"></div>
+    <div class="product-info">
+      <h3>FORM Speaker</h3>
+      <p>Геометрическая колонка с глубоким бархатным звуком.</p>
+      <button>Купить</button>
     </div>
-    <div class="nf-hero2-bg"></div>
-  </section>
+  </div>
 
-  <section class="nf-products" id="products">
-    <h2 class="nf-products-title">ART OBJECTS</h2>
-    <p class="nf-products-sub">Limited collection inspired by noise, texture and emotional geometry.</p>
-
-    <div class="nf-products-grid">
-      <div class="nf-product-card">
-        <div class="nf-product-img img1"></div>
-        <div class="nf-product-info">
-          <h3 class="nf-product-name">NOISE Lamp</h3>
-          <p class="nf-product-desc">
-            Minimal matte lamp with soft diffused light.<br>
-            Inspired by analog grain and quiet ambience.
-          </p>
-          <button class="nf-btn">Buy Now</button>
-        </div>
-      </div>
-
-      <div class="nf-product-card">
-        <div class="nf-product-img img2"></div>
-        <div class="nf-product-info">
-          <h3 class="nf-product-name">FORM Speaker</h3>
-          <p class="nf-product-desc">
-            Geometric sound device with deep velvet tones.<br>
-            Designed for immersive creative sessions.
-          </p>
-          <button class="nf-btn">Buy Now</button>
-        </div>
-      </div>
-
-      <div class="nf-product-card">
-        <div class="nf-product-img img3"></div>
-        <div class="nf-product-info">
-          <h3 class="nf-product-name">Pulse Pen</h3>
-          <p class="nf-product-desc">
-            Metal pen with engraved noise-wave pattern.<br>
-            A tactile tool for designers and thinkers.
-          </p>
-          <button class="nf-btn">Buy Now</button>
-        </div>
-      </div>
+  <div class="product-card">
+    <div class="product-img" style="background-image:url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f');"></div>
+    <div class="product-info">
+      <h3>Pulse Pen</h3>
+      <p>Металлическая ручка с гравировкой шумовой волны.</p>
+      <button>Купить</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="nf-footer2" id="contact">
-    <div class="nf-footer2-grid">
-      <div class="nf-footer2-col">
-        <h3 class="nf-footer2-logo">NOISE & FORM</h3>
-        <p class="nf-footer2-text">
-          A studio dedicated to experimental design,<br>
-          emotional geometry and textured aesthetics.
-        </p>
-      </div>
-      <div class="nf-footer2-col">
-        <h4 class="nf-footer2-title">Contacts</h4>
-        <p class="nf-footer2-text">studio@noiseform.art</p>
-        <p class="nf-footer2-text">+7 (901) 555‑12‑77</p>
-      </div>
-      <div class="nf-footer2-col">
-        <h4 class="nf-footer2-title">Navigation</h4>
-        <p class="nf-footer2-text">Works</p>
-        <p class="nf-footer2-text">Objects</p>
-        <p class="nf-footer2-text">Studio</p>
-      </div>
-      <div class="nf-footer2-col">
-        <h4 class="nf-footer2-title">Social</h4>
-        <p class="nf-footer2-text">Instagram</p>
-        <p class="nf-footer2-text">Behance</p>
-        <p class="nf-footer2-text">Dribbble</p>
-      </div>
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>NOISE & FORM</h4>
+      <p>Дизайн‑студия экспериментальных объектов.</p>
     </div>
-    <div class="nf-footer2-bottom">
-      © 2026 Noise & Form Studio — Crafted in Silence.
+
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <p>studio@noiseform.art</p>
+      <p>+7 (901) 555‑12‑77</p>
     </div>
-  </footer>
+
+    <div class="footer-col">
+      <h4>Навигация</h4>
+      <p>Товары</p>
+      <p>О нас</p>
+      <p>Контакты</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Noise & Form Studio
+  </div>
+</footer>
 
 </body>
 </html>
